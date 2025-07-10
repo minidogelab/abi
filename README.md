@@ -1,108 +1,97 @@
-# Withdrawal Functions ABI and Usage Guide
+# DeFi Investment Contract Operation Guide
 
-This document provides the ABI for the withdrawal functions in the DeFi Contract and instructions on how to use them in Remix.
+This project provides a complete operation guide for DeFi investment contracts, including detailed explanations of investment and withdrawal functions.
 
-## Contract Address
-```
-0x303c0CA64bE04600DC892CbDA1E8C7E1E987Fa24
-```
+## 📋 Operation Guide Directory
 
-## ABI Specification
+### 🔗 Quick Navigation
 
-The following is the ABI for the withdrawal functions:
+| Operation Type | Guide Document | Description |
+|---------|---------|------|
+| 💰 **Investment Operation** | [📖 Investment Contract Guide](./investment-contract-guide-en.md) | Complete investment process, including environment configuration, contract connection, USDC authorization, and investment execution |
+| 💸 **Withdrawal Operation** | [📖 Withdrawal Usage Guide](./withdrawal-usage-guide.md) | Detailed withdrawal process, including yield withdrawal and full withdrawal functions |
 
-```json
-[
-  {
-    "inputs": [],
-    "name": "withdrawYield",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "withdrawFull",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  }
-]
-```
+---
 
-## Using the Withdrawal Functions in Remix
+## 🚀 Core Features Overview
 
-### Setup in Remix
+### Investment Features
+- **Minimum Investment**: 100 USDC
+- **Maximum Investment**: 150,000 USDC
+- **Yield Source**: AAVE protocol lending yield
+- **Fund Security**: Stored in AAVE protocol
 
-1. Open [Remix IDE](https://remix.ethereum.org/)
-2. Create a new file named `IWithdrawalFunctions.sol` and paste the following code:
+### Withdrawal Features
+- **Yield Withdrawal**: No fees, principal continues generating yield
+- **Full Withdrawal**: 2% fee, withdraws principal + yield
 
-```solidity
-// SPDX-License-Identifier: MIT
-pragma solidity ^0.8.20;
+---
 
-interface IWithdrawalFunctions {
-    function withdrawYield() external returns (uint256);
-    function withdrawFull() external returns (uint256);
-}
-```
+## 🏗️ Contract Information
 
-### Interacting with an Existing Contract
+- **Contract Address**: `0x303c0CA64bE04600DC892CbDA1E8C7E1E987Fa24`
+- **Network**: BSC Mainnet (Chain ID: 56)
+- **USDC Token Address**: `0x8AC76a51cc950d9822D68b83fE1Ad97B32Cd580d`
 
-1. Compile the interface
-   - Go to the "Solidity Compiler" tab
-   - Select Compiler version 0.8.20
-   - Click "Compile IWithdrawalFunctions.sol"
+---
 
-2. Deploy & Run Transactions
-   - Go to the "Deploy & Run Transactions" tab
-   - Set the environment to "Injected Provider - MetaMask" (or another web3 wallet)
-   - Ensure you're connected to BSC network
-   - Under "At Address", paste the address of the deployed DeFi Contract: 0x303c0CA64bE04600DC892CbDA1E8C7E1E987Fa24
-   - Click "At Address" to load the contract interface
+## 📝 Key File Description
 
-3. Using the Functions
+### Smart Contract Interface
+- `IWithdrawalFunctions.sol` - Solidity interface file for withdrawal functions
 
-#### Withdraw Yield
+### Operation Guide Documents
+- `investment-contract-guide-en.md` - Complete investment operation guide (English)
+- `withdrawal-usage-guide.md` - Withdrawal function usage guide (English)
 
-This function allows you to withdraw accumulated yield and referral rewards without touching your principal investment.
+---
 
-- Locate the "withdrawYield" function in the deployed contract interface
-- Click the button to execute the transaction
-- Confirm the transaction in your wallet
-- The function returns the total amount withdrawn
+## ⚡ Quick Start
 
-#### Withdraw Full (Principal + Yield)
+### New User Investment Process
+1. 📱 [Configure Environment](./investment-contract-guide-en.md#prerequisites) - Connect wallet to BSC Mainnet
+2. 🔑 [Authorize USDC](./investment-contract-guide-en.md#step-3-usdc-approval) - Authorize contract to use your USDC
+3. 💰 [Execute Investment](./investment-contract-guide-en.md#step-4-make-investment) - Invest minimum 100 USDC
+4. ✅ [Confirm Status](./investment-contract-guide-en.md#step-5-confirm-investment-status) - Check transaction status on BSCScan
 
-This function withdraws your entire investment, including principal, yield, and referral rewards.
+### Existing Investor Withdrawal Process
+1. 🌐 [Connect to Remix](./withdrawal-usage-guide.md#setup-in-remix) - Set up Remix environment
+2. 🔗 [Load Contract](./withdrawal-usage-guide.md#interacting-with-an-existing-contract) - Connect to existing contract
+3. 💸 [Execute Withdrawal](./withdrawal-usage-guide.md#using-the-functions) - Choose yield withdrawal or full withdrawal
 
-- Locate the "withdrawFull" function in the deployed contract interface
-- Click the button to execute the transaction
-- Confirm the transaction in your wallet
-- Note: A withdrawal fee will be applied to the principal amount
-- The function returns the amount transferred to your wallet after fees
+---
 
-### Error Handling
+## 🛡️ Security Reminders
 
-Common errors you might encounter:
+### Fund Security Mechanisms
+- **💼 Fund Storage**: Your USDC funds will be stored in the AAVE protocol
+- **🔐 Authorization Mechanism**: Each investment requires only a single USDC approval, which can be revoked anytime
+- **📖 Code Transparency**: All smart contract codes are completely open source
+- **🛡️ Security Audit**: Contracts use OpenZeppelin standard libraries
 
-- "No yield or boost yield to withdraw": You don't have any yield to withdraw
-- "No investment to withdraw": You don't have any investment to withdraw
+### Pre-Operation Checks
+- ✅ Carefully verify contract address accuracy
+- ✅ Ensure connection to the correct BSC Mainnet
+- ✅ Have sufficient BNB in wallet for transaction fees
+- ✅ Recommended to test functionality with small amounts first
 
-### Gas Optimization
+---
 
-- All withdrawal functions involve multiple operations including interactions with AAVE
-- Ensure you have enough BNB for gas fees
-- Consider executing transactions during periods of lower network congestion for reduced gas costs 
+## 🆘 Getting Help
+
+If you encounter issues during usage:
+
+1. 📊 [Check Transaction Status](https://bscscan.com) - Confirm transaction details on BSCScan
+2. 📖 Refer to the corresponding operation guide documents
+3. 🔍 Confirm contract address is correct
+4. 💬 Contact the project team for technical support
+
+---
+
+## ⚠️ Disclaimer
+
+Using this investment contract involves risks, including but not limited to smart contract risks and market risks. Please invest with full understanding of the risks. The project team is not responsible for any losses.
+
+---
+
+*Document updated: January 2025* 
